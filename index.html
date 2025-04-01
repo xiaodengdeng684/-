@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SingSnap Kids - Learn to Sing by Uploading Photos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2575fc;
+        }
+        
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #333;
+        }
+        
+        .section-title span {
+            color: #2575fc;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background-color: #f1f8ff;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .feature-icon i {
+            font-size: 3rem;
+            color: #2575fc;
+        }
+        
+        .feature-content {
+            padding: 25px;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .upload-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .upload-area {
+            border: 2px dashed #2575fc;
+            border-radius: 10px;
+            padding: 60px 20px;
+            margin: 30px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .upload-area:hover {
+            background-color: #f1f8ff;
+        }
+        
+        .upload-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+        }
+        
+        .how-it-works {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #2575fc;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+            }
+            
+            .how-it-works {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">SingSnap Kids</div>
+        <p>Learn to sing by uploading photos - The fun way for kids to develop musical talents</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">SingSnap Kids</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#upload">Upload Photo</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="home" class="section">
+        <h2 class="section-title">Welcome to <span>SingSnap Kids</span></h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            Our innovative platform uses advanced image recognition to analyze children's photos and create personalized singing lessons. 
+            By capturing facial expressions, posture, and physical characteristics, we create custom vocal exercises that work best for each child.
+        </p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Upload Photos</h3>
+                    <p>Simply upload your child's photos to our secure platform</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>AI Analysis</h3>
+                    <p>Our AI analyzes facial structure and expressions</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Custom Lessons</h3>
+                    <p>Receive personalized singing lessons tailored to your child</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="how-it-works" class="section" style="background-color: #f1f8ff;">
+        <h2 class="section-title">How It <span>Works</span></h2>
+        
+        <div class="how-it-works">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Upload Photo</h3>
+                <p>Take clear photos of your child in various expressions and upload them to our platform</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>AI Analysis</h3>
+                <p>Our AI analyzes facial features, posture, and expressions to determine ideal vocal techniques</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Custom Lessons</h3>
+                <p>Receive a custom singing curriculum with exercises designed specifically for your child</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Practice & Grow</h3>
+                <p>Follow the personalized lessons and track your child's singing progress</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features" class="section">
+        <h2 class="section-title">Our <span>Features</span></h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Personalized Learning</h3>
+                    <p>Lessons tailored to each child's unique physical characteristics</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Secure Platform</h3>
+                    <p>Your child's photos and data are securely protected</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor improvements with our detailed progress reports</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Video Tutorials</h3>
+                    <p>Access to kid-friendly video lessons that complement the exercises</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Community</h3>
+                    <p>Join our community of young singers and supportive parents</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Mobile Friendly</h3>
+                    <p>Access lessons on any device, anywhere, anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="upload" class="section" style="background-color: #f1f8ff;">
+        <h2 class="section-title">Upload <span>Photo</span></h2>
+        
+        <div class="upload-container">
+            <h3>Start Your Child's Singing Journey Today</h3>
+            <p class="upload-text">Upload a clear photo of your child to begin creating their personalized singing lessons</p>
+            
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #2575fc; margin-bottom: 15px;"></i>
+                <p>Drag and drop your photo here</p>
+                <p>or</p>
+                <button class="btn" style="margin-top: 15px;">Browse Files</button>
+            </div>
+            
+            <p style="color: #666; font-size: 0.9rem;">We accept JPG, PNG files up to 5MB</p>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="section">
+        <h2 class="section-title">Success <span>Stories</span></h2>
+        
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"My daughter was always shy about singing. After using SingSnap Kids for just 3 months, her confidence has soared and she even performed at her school talent show!"</p>
+                <p class="testimonial-author">- Sarah W., Mother of Emma (8)</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The personalized approach made all the difference for my son. He struggled with traditional singing lessons, but the custom exercises based on his photos worked wonders."</p>
+                <p class="testimonial-author">- Michael T., Father of James (10)</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As a music teacher, I'm impressed by how the platform analyzes physical characteristics to create targeted vocal exercises. I recommend it to all my young students."</p>
+                <p class="testimonial-author">- Ms. Rodriguez, Elementary Music Teacher</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="section" style="background-color: #f1f8ff;">
+        <h2 class="section-title">Contact <span>Us</span></h2>
+        
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 30px;">Have questions or need assistance? Our team is here to help!</p>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p><i class="fas fa-envelope" style="margin-right: 10px; color: #2575fc;"></i> support@singsnapkids.com</p>
+                <p><i class="fas fa-phone" style="margin-right: 10px; color: #2575fc;"></i> 1-800-SING-KID</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #2575fc;"></i> 123 Music Street, Harmony City</p>
+            </div>
+            
+            <button class="btn">Send Us a Message</button>
+        </div>
+    </section>
+    
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="logo" style="color: white; font-size: 1.8rem; margin-bottom: 20px;">SingSnap Kids</div>
+            
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#upload">Upload</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+            
+            <div style="margin: 20px 0;">
+                <a href="#" style="color: white; font-size: 1.5rem; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: white; font-size: 1.5rem; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: white; font-size: 1.5rem; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color: white; font-size: 1.5rem; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <p class="copyright">© 2023 SingSnap Kids. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll behavior for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Simulate upload functionality (for demo purposes)
+        const uploadArea = document.querySelector('.upload-area');
+        const browseBtn = document.querySelector('.upload-area .btn');
+        
+        uploadArea.addEventListener('click', function() {
+            browseBtn.click();
+        });
+        
+        browseBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            alert('This is a demo. Photo upload functionality would be implemented here.');
+        });
+    </script>
+</body>
+</html>
